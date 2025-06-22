@@ -887,7 +887,7 @@ func (app *App) authorized(w http.ResponseWriter, r *http.Request, ctx *Context)
 		}
 		accessRecords = appendCatalogAccessRecord(accessRecords, r)
 	}
-
+	fmt.Println("lol auth")
 	authorizedCtx, err := app.accessController.Authorized(ctx.Context, accessRecords...)
 	if err != nil {
 		switch err := err.(type) {

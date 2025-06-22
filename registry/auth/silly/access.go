@@ -44,6 +44,7 @@ func newAccessController(options map[string]interface{}) (auth.AccessController,
 // Authorized simply checks for the existence of the authorization header,
 // responding with a bearer challenge if it doesn't exist.
 func (ac *accessController) Authorized(ctx context.Context, accessRecords ...auth.Access) (context.Context, error) {
+	fmt.Println("silly auth")
 	req, err := dcontext.GetRequest(ctx)
 	if err != nil {
 		return nil, err
