@@ -856,12 +856,14 @@ func (app *App) authorized(w http.ResponseWriter, r *http.Request, ctx *Context)
 	}
 
 	var accessRecords []auth.Access
-
+	fmt.Println("ganesh do in authorized")
 	if repo != "" {
 		accessRecords = appendAccessRecords(accessRecords, r.Method, repo)
 		if fromRepo := r.FormValue("from"); fromRepo != "" {
 			fromReg := strings.Split(fromRepo, "/")[0]
 			orgReg := strings.Split(repo, "/")[0]
+			fmt.Println("from reg", fromReg)
+			fmt.Println("org reg", orgReg)
 			if fromReg == orgReg {
 				accessRecords = appendAccessRecords(accessRecords, http.MethodGet, fromRepo)
 			}
