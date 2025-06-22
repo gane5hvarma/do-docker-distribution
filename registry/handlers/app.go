@@ -860,9 +860,14 @@ func (app *App) authorized(w http.ResponseWriter, r *http.Request, ctx *Context)
 	if repo != "" {
 		accessRecords = appendAccessRecords(accessRecords, r.Method, repo)
 		if fromRepo := r.FormValue("from"); fromRepo != "" {
+			fromReg := strings.Split(fromRepo, "/")[0]
+			orgReg := strings.Split(repo, "/")[0]
+			if fromReg == orgReg {
+				accessRecords = appendAccessRecords(accessRecords, http.MethodGet, fromRepo)
+			}
 			// mounting a blob from one repository to another requires pull (GET)
 			// access to the source repository.
-			accessRecords = appendAccessRecords(accessRecords, http.MethodGet, fromRepo)
+
 		}
 	} else {
 		// Only allow the name not to be set on the base route.
