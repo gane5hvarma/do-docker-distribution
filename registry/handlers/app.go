@@ -865,10 +865,10 @@ func (app *App) authorized(w http.ResponseWriter, r *http.Request, ctx *Context)
 			fmt.Println("from reg", fromReg)
 			fmt.Println("org reg", orgReg)
 			if fromReg == orgReg {
+				// mounting a blob from one repository to another requires pull (GET)
+				// access to the source repository.
 				accessRecords = appendAccessRecords(accessRecords, http.MethodGet, fromRepo)
 			}
-			// mounting a blob from one repository to another requires pull (GET)
-			// access to the source repository.
 
 		}
 	} else {

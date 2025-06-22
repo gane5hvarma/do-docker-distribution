@@ -62,6 +62,7 @@ func (ac *accessController) Authorized(ctx context.Context, accessRecords ...aut
 			}
 			challenge.scope = strings.Join(scopes, " ")
 		}
+		fmt.Println("scopes", challenge.scope)
 
 		return nil, &challenge
 	}
